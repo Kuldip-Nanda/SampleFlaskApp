@@ -1,0 +1,6 @@
+curl  "http://127.0.0.1:5000/"
+curl  "http://127.0.0.1:5000/Authenticate?password=admin&user=admin"
+curl  "http://127.0.0.1:5000/Authenticate?password=kuldip&user=kuldip"
+curl  -X POST "http://127.0.0.1:5000/CreateUser?user=kuldip&email=kuldip@gmail.com&password=kuldip"
+curl  -X DELETE "http://127.0.0.1:5000/DeleteUser?user=kuldip"
+

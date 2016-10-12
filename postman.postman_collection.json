@@ -1,0 +1,81 @@
+{
+	"variables": [],
+	"info": {
+		"name": "postman",
+		"_postman_id": "d149a615-3a79-a114-5861-46f127b1335c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:5000/DeleteUser?user=kuldip",
+			"request": {
+				"url": "http://127.0.0.1:5000/DeleteUser?user=kuldip",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/CreateUser?user=kuldip&email=kuldip@gmail.com&password=kuldip\"",
+			"request": {
+				"url": "http://127.0.0.1:5000/CreateUser?user=kuldip&email=kuldip@gmail.com&password=kuldip\"",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/Authenticate?password=kuldip&user=kuldip",
+			"request": {
+				"url": "http://127.0.0.1:5000/Authenticate?password=kuldip&user=kuldip",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/Authenticate?password=admin&user=admin",
+			"request": {
+				"url": "http://127.0.0.1:5000/Authenticate?password=admin&user=admin",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/",
+			"request": {
+				"url": "http://127.0.0.1:5000/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

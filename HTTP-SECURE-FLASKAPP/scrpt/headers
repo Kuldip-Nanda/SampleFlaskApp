@@ -1,0 +1,7 @@
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 25
+Set-Cookie: session=eyJ1c2VybmFtZSI6ImFkbWluIn0.CuGMsw.HTY6QHM5E-yQHW2a9yRNmMk1JfY; HttpOnly; Path=/
+Server: Werkzeug/0.11.11 Python/2.7.12
+Date: Thu, 13 Oct 2016 21:22:59 GMT
+

@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# This is a small script written with CURL command to test out the rest api's
+#
+
+echo " test: [just a sample / get]"
+echo
+curl  -k --cacert ./server.crt "https://127.0.0.1:5000/"
+echo
+read -n1 -r -p "Press a key to continue..." key
+
+
+echo "test: [login with the wrong credentials]"
+echo
+curl  -k --cacert ./server.crt -H "Content-Type: application/json" -X POST -d '{"user":"kuldip", "password":"kuldip"}' "https://127.0.0.1:5000/Login"
+echo
+read -n1 -r -p "Press a key to continue..." key
+
+echo "test:: [login and logout with the correct credentials]" 
+echo
+curl  -k --cacert ./server.crt -H "Content-Type: application/json" -D  headers -X POST -d '{"user":"admin", "password":"admin"}' "https://127.0.0.1:5000/Login"
+curl  -k --cacert ./server.crt -b  headers -X POST "https://127.0.0.1:5000/Logout?user=admin"
+echo
+read -n1 -r -p "Press a key to continue..." key
+
+echo "test: [logout after logout]" 
+echo
+curl  -k --cacert ./server.crt -D  headers  -H "Content-Type: application/json" -X POST "https://127.0.0.1:5000/Logout?user=admin"
+echo
+read -n1 -r -p "Press a key to continue..." key
+
+echo "test : [trying to perform the CRUD operations after loging out]"
+echo "  create user "
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X POST   -d '{"user":"user1", "password":"first", "email": "user1@gmail.com" }' "https://127.0.0.1:5000/CreateUser"
+echo "  delete user "
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X DELETE -d '{"user": "user1" }'                                                "https://127.0.0.1:5000/DeleteUser"
+read -n1 -r -p "Press a key to continue..." key
+
+echo "test : [again login in and perform crud operations with bad user]"
+rm -f headers
+echo " login"
+curl -k --cacert ./server.crt -H "Content-Type: application/json"  -H "Content-Type: application/json" -D headers -X POST -d '{"user":"kuldip", "password":"kuldip"}' "https://127.0.0.1:5000/Login"
+echo " create user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X POST   -d '{"user":"user1", "password":"first", "email": "user1@gmail.com" }' "https://127.0.0.1:5000/CreateUser"
+echo " delete user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X DELETE -d '{"user": "user1" }'                                                "https://127.0.0.1:5000/DeleteUser"
+echo " logout"
+curl -k --cacert ./server.crt  -b  headers  -H "Content-Type: application/json" -X POST "https://127.0.0.1:5000/Logout?user=admin"
+read -n1 -r -p "Press a key to continue..." key
+
+echo "test : [login in and perform crud operations with correct user]"
+rm -f headers
+curl -k --cacert ./server.crt -H "Content-Type: application/json"  -D headers -X POST   -d '{"user":"admin", "password":"admin"}'                              "https://127.0.0.1:5000/Login"
+echo " create user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X POST   -d '{"user":"user1", "password":"first", "email": "user1@gmail.com" }' "https://127.0.0.1:5000/CreateUser"
+echo " create user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X POST   -d '{"user":"user2", "password":"first", "email": "user2@gmail.com" }' "https://127.0.0.1:5000/CreateUser"
+echo " create user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X POST   -d '{"user":"user3", "password":"first", "email": "user2@gmail.com" }' "https://127.0.0.1:5000/CreateUser"
+echo " delete user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X DELETE -d '{"user": "user1" }'                                                "https://127.0.0.1:5000/DeleteUser"
+echo " delete user in db"
+curl -k --cacert ./server.crt -b headers  -H "Content-Type: application/json" -X DELETE -d '{"user": "user2" }'                                                "https://127.0.0.1:5000/DeleteUser"
+echo " logout"
+curl -k --cacert ./server.crt -b  headers -H "Content-Type: application/json" -X POST "https://127.0.0.1:5000/Logout?user=admin"
